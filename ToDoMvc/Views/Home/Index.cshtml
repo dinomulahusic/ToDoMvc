@@ -3,12 +3,14 @@
 }
 
 <div id="todo-board">
+    <a id="moveOneDateBefore" style="float: left" href="#">&lArr;</a>
+    <a id="moveOneDateAfter" style="float: right" href="#">&rArr;</a>
     <table id="todo-table">
         <thead>
             <tr>
                 @for (int i = -1; i < 6; i++)
                 {
-                    <th>
+                    <th id="head-@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")" data-date="@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")">
                         @DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")
                     </th>
                 }
@@ -18,7 +20,7 @@
             <tr>
                 @for (int i = -1; i < 6; i++)
                 {
-                    <td id="@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")" class="connectedSortable">
+                    <td id="cell-@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")" class="connectedSortable">
                         @*<div class="sticky">
                                 <p>
                                     <strong>@i to-do list</strong>

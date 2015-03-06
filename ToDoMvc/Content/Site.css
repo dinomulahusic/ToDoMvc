@@ -79,3 +79,7 @@ textarea {
 ul {
     list-style: none;
 }
+
+.currentDate {
+    background-color: #D8D8D8;
+}
