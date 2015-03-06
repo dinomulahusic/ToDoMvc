@@ -6,42 +6,25 @@
     <table id="todo-table">
         <thead>
             <tr>
-                <th data-columnid="2e5efb11943d11e4a194e59f3f10c484" class="column-first columnHeader">
-                    <div class="columnHeader-inner">
-                        <h2 title="Do today" class="columnHeader-name">
-                            <span class="columnHeader-warningIcon" title="Task limit exceeded"></span>
-                            Do today
-                        </h2>
-                        <div title="Expand column" class="columnHeader-expand">
-                        </div>
-                        <div title="Minimize column" class="columnHeader-collapse">
-                        </div>
-                        <div title="Add task" class="columnHeader-addTask"></div>
-                    </div>
-                </th>
-                <th data-columnid="2e5efb11943d11e4a194e59f3f10c481" class="columnHeader">
-                    <div class="columnHeader-inner">
-                        <h2 title="Do today" class="columnHeader-name">
-                            <span class="columnHeader-warningIcon" title="Task limit exceeded"></span>
-                            Do today
-                        </h2>
-                        <div title="Expand column" class="columnHeader-expand">
-                        </div>
-                        <div title="Minimize column" class="columnHeader-collapse">
-                        </div>
-                        <div title="Add task" class="columnHeader-addTask"></div>
-                    </div>
-                </th>
+                @for (int i = -1; i < 6; i++)
+                {
+                    <th>
+                        @DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")
+                    </th>
+                }
             </tr>
         </thead>
         <tbody>
-            <tr class="board-swimlane swimlane-first swimlane-last">
-                <td data-columnid="2e5efb11943d11e4a194e59f3f10c484" class="board-collapsedColumnNameCell column-first"></td>
-                <td id="board-taskListCell-2e5efb11943d11e4a194e59f3f10c484-" data-columnid="2e5efb11943d11e4a194e59f3f10c484" class="board-taskListCell column-first"><div class="taskList ui-sortable" style="height: 354px;"></div></td>
-
-                <td data-columnid="2e5efb11943d11e4a194e59f3f10c484" class="board-collapsedColumnNameCell column-first"></td>
-                <td id="board-taskListCell-2e5efb11943d11e4a194e59f3f10c484-" data-columnid="2e5efb11943d11e4a194e59f3f10c484" class="board-taskListCell column-first"><div class="taskList ui-sortable" style="height: 354px;"></div></td>
+            <tr>
+                @for (int i = -1; i < 6; i++)
+                {
+                    <td>
+                        <div>Column1 @i.ToString()</div>
+                        <div>Column2 @i.ToString()</div>
+                    </td>
+                }
             </tr>
+
         </tbody>
     </table>
 </div>
