@@ -18,22 +18,22 @@
             <tr>
                 @for (int i = -1; i < 6; i++)
                 {
-                    <td class="connectedSortable">
-                        <div class="sticky">
-                            <p>
-                                <strong>@i to-do list</strong>
-                                <br />
-                                <small>Monday, September 19th</small>
-                            </p>
-                            <ul>
-                                <li>Write a blog post</li>
-                                <li>Go to the bank</li>
-                                <li>Study for exams</li>
-                                <li>Renew web hosting account and domain name</li>
-                                <li>Learn something new</li>
-                                <li>Update project log</li>
-                            </ul>
-                        </div>
+                    <td id="@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")" class="connectedSortable">
+                        @*<div class="sticky">
+                                <p>
+                                    <strong>@i to-do list</strong>
+                                    <br />
+                                    <small>Monday, September 19th</small>
+                                </p>
+                                <ul>
+                                    <li>Write a blog post</li>
+                                    <li>Go to the bank</li>
+                                    <li>Study for exams</li>
+                                    <li>Renew web hosting account and domain name</li>
+                                    <li>Learn something new</li>
+                                    <li>Update project log</li>
+                                </ul>
+                            </div>*@
                     </td>
                 }
             </tr>

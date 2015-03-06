@@ -43,6 +43,7 @@ textarea {
 
 .sticky {
     /* General */
+    cursor: pointer;
     margin: 5px auto 0 auto;
     padding: 2px 2px;
     width: 90%;
