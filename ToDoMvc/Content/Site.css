@@ -26,20 +26,27 @@ textarea {
     max-width: 280px;
 }
 
-#todo-table {
-    border: 1px solid black;
-    width: 100%;
-    table-layout: fixed;
+.todo-column {
 }
 
-    #todo-table th {
-        border: 1px solid black;
-        text-align: center;
-    }
+.todo-column-header {
+    background-color: #E8E8E8;
+    text-align: center;
+}
 
-    #todo-table td {
-        border: 1px solid black;
-    }
+.todo-column-header-highlight {
+    background-color: #D0D0D0;
+    text-align: center;
+}
+
+.todo-column-content {
+    background-color: #F0F0F0 ;
+    height: 500px;
+}
+
+.todo-column-content-highlight {
+    background-color: #D8D8D8;
+}
 
 .sticky {
     /* General */

@@ -1,5 +1,5 @@
 ﻿var main = function () {
-    $('td').each(function (i, el) {
+    $('.todo-column').each(function (i, el) {
         loadData(el.id);
     });
 
@@ -13,8 +13,8 @@
         moveOneDayAfter();
     });
 
-    $('#todo-table td').sortable({
-        connectWith: ".connectedSortable"
+    $('.todo-column-content').sortable({
+        connectWith: ".todo-column-content"
     }).disableSelection();
 };
 
@@ -69,18 +69,23 @@ var getDateFormated = function (date) {
 var highlightCurrentDate = function () {
     var today = getDateFormated(new Date());
 
-    $('.currentDate').removeClass('currentDate');
-    $('#cell-' + today).addClass('currentDate');
-    $('#head-' + today).addClass('currentDate');
+    $('.todo-column-header-highlight').removeClass('todo-column-header-highlight');
+    $('.todo-column-content-highlight').removeClass('todo-column-content-highlight');
+
+    $('#div-' + today).children('.todo-column-header').addClass('todo-column-header-highlight');
+    $('#div-' + today).children('.todo-column-content').addClass('todo-column-content-highlight');
 };
 
 var loadData = function (dateParam) {
-    $.getJSON("/Home/GetTodoTasks", { date: dateParam.substring(5) }, function (data) {
+    $.getJSON("/Home/GetTodoTasks", { date: dateParam.substring(4) }, function (data) {
         var dayColumn = $('#' + dateParam);
-        dayColumn.children().remove();
+        dayColumn.children('.todo-column-header').text(dateParam.substring(4));
+        var content = dayColumn.find('.todo-column-content');
+
+        content.children().remove();
 
         $.each(data, function (i, item) {
-            dayColumn.append('<div class="sticky">' + item.Title + '</div>')
+            content.append('<div class="sticky">' + item.Title + '</div>')
         });
     });
 };
