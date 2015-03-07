@@ -2,10 +2,10 @@
     ViewBag.Title = "Home Page";
 }
 
-<div id="row todo-board">
-    @*<a id="moveOneDateBefore" style="float: left" href="#">&lArr;</a>
-        <a id="moveOneDateAfter" style="float: right" href="#">&rArr;</a>*@
-
+<a id="moveOneDateBefore" style="float: left" href="#">&lArr;</a>
+<a id="moveOneDateAfter" style="float: right" href="#">&rArr;</a>
+<br />
+<div class="row todo-board">
     @for (int i = -1; i < 5; i++)
     {
         <div class="col-md-2 todo-column" id="div-@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")">

@@ -19,29 +19,37 @@
 };
 
 var moveOneDayBefore = function () {
-    $('#todo-table td:last-child').remove();
-    $('#todo-table th:last-child').remove();
+    $('.todo-board > div:last-child').remove();
 
-    var firstDate = $('#todo-table th:first-child').data('date');
+    var firstDate = $('.todo-board > div:first-child').attr('id').substring(4);
     var previousDate = getDateFormated(addDays(firstDate, -1));
-    var prevCol = $('<th id="head-' + previousDate + '" data-date="' + previousDate + '" >' + previousDate + '</th>');
 
-    $('#todo-table thead tr').prepend(prevCol);
-    $('#todo-table tbody tr').prepend('<td id="cell-' + previousDate + '" class="connectedSortable"></div>');
-    loadData('cell-' + previousDate);
+    var prevCol = $(
+        '<div class="col-md-2 todo-column" id="div-' + previousDate + '">' +
+            '<div class="todo-column-header"></div>' +
+            '<div class="todo-column-content"></div>' +
+        '</div>'
+    );
+
+    $('.todo-board').prepend(prevCol);
+    loadData('div-' + previousDate);
 };
 
 var moveOneDayAfter = function () {
-    $('#todo-table td:first-child').remove();
-    $('#todo-table th:first-child').remove();
+    $('.todo-board > div:first-child').remove();
 
-    var lastDate = $('#todo-table th:last-child').data('date');
+    var lastDate = $('.todo-board > div:last-child').attr('id').substring(4);
     var nextDate = getDateFormated(addDays(lastDate, 1));
-    var nextCol = $('<th id="head-' + nextDate + '" data-date="' + nextDate + '" >' + nextDate + '</th>');
 
-    $('#todo-table thead tr').append(nextCol);
-    $('#todo-table tbody tr').append('<td id="cell-' + nextDate + '" class="connectedSortable"></div>');
-    loadData('cell-' + nextDate);
+    var nextCol = $(
+        '<div class="col-md-2 todo-column" id="div-' + nextDate + '">' +
+            '<div class="todo-column-header"></div>' +
+            '<div class="todo-column-content"></div>' +
+        '</div>'
+    );
+
+    $('.todo-board').append(nextCol);
+    loadData('div-' + nextDate);
 };
 
 var addDays = function (date, days) {
@@ -52,7 +60,7 @@ var addDays = function (date, days) {
 
 var getDateFormated = function (date) {
     var dd = date.getDate();
-    var mm = date.getMonth() + 1; //January is 0!
+    var mm = date.getMonth(); //January is 0!
     var yyyy = date.getFullYear();
 
     if (dd < 10) {
