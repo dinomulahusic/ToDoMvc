@@ -1,7 +1,11 @@
-﻿body {
+﻿html, body {
+    height: 100%;
+}
+
+body {
     left: 0;
     margin: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: relative;
 }
 
@@ -10,6 +14,7 @@
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 60px;
+    height: 80%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -26,12 +31,18 @@ textarea {
     max-width: 280px;
 }
 
+.todo-board {
+    height: 100%;
+}
+
 .todo-column {
+    height: 100%;
 }
 
 .todo-column-header {
     background-color: #E8E8E8;
     text-align: center;
+    height: 10%;
 }
 
 .todo-column-header-highlight {
@@ -40,8 +51,8 @@ textarea {
 }
 
 .todo-column-content {
-    background-color: #F0F0F0 ;
-    height: 500px;
+    background-color: #F0F0F0;
+    height: 70%;
 }
 
 .todo-column-content-highlight {
