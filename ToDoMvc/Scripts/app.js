@@ -53,14 +53,14 @@ var moveOneDayAfter = function () {
 };
 
 var addDays = function (date, days) {
-    dateObj = new Date(date.substring(0, 4), date.substring(5, 7), date.substring(8, 10));
+    dateObj = new Date(date.substring(0, 4), date.substring(5, 7) - 1, date.substring(8, 10));
     dateObj.setDate(dateObj.getDate() + days);
     return dateObj;
 };
 
 var getDateFormated = function (date) {
     var dd = date.getDate();
-    var mm = date.getMonth(); //January is 0!
+    var mm = date.getMonth() + 1; //January is 0!
     var yyyy = date.getFullYear();
 
     if (dd < 10) {
