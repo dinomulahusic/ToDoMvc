@@ -21,6 +21,7 @@ namespace ToDoMvc.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<TodoTask> TodoTasks { get; set; }
+        public DbSet<TodoTaskTemplate> TodoTaskTemplates { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

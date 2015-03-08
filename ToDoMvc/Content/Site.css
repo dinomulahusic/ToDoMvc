@@ -85,6 +85,10 @@ textarea {
     background: linear-gradient(top, #fefdca 0%,#f7f381 100%); /* W3C; A catch-all for everything else */
 }
 
+.sticky-template {
+    width: 80px;
+}
+
     .sticky ol {
         margin: 12px;
     }
@@ -93,11 +97,15 @@ textarea {
         text-align: center;
     }
 
-
 ul {
     list-style: none;
 }
 
 .currentDate {
     background-color: #D8D8D8;
+}
+
+.template-area {
+    display: inline-block;
+    padding: 0 5px 0 0;
 }
