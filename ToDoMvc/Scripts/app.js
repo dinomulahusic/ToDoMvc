@@ -14,8 +14,16 @@
     });
 
     $('.todo-column-content').sortable({
-        connectWith: ".todo-column-content"
+        connectWith: ".todo-column-content",
+        stop: todoTaskStop
     }).disableSelection();
+};
+
+var todoTaskStop = function (event, ui) {
+    var todoTaskId = ui.item.attr("id");
+    var date = ui.item.closest(".todo-column").attr("id").substring(4);
+
+    $.post("/TodoTask/UpdateTask", { todoTaskId: todoTaskId, newTaskDate: date }, function () { }, "json");
 };
 
 var moveOneDayBefore = function () {
@@ -85,7 +93,7 @@ var highlightCurrentDate = function () {
 };
 
 var loadData = function (dateParam) {
-    $.getJSON("/Home/GetTodoTasks", { date: dateParam.substring(4) }, function (data) {
+    $.getJSON("/TodoTask/GetTodoTasks", { date: dateParam.substring(4) }, function (data) {
         var dayColumn = $('#' + dateParam);
         dayColumn.children('.todo-column-header').text(dateParam.substring(4));
         var content = dayColumn.find('.todo-column-content');
@@ -93,7 +101,7 @@ var loadData = function (dateParam) {
         content.children().remove();
 
         $.each(data, function (i, item) {
-            content.append('<div class="sticky">' + item.Title + '</div>')
+            content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
         });
     });
 };
