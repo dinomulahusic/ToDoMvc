@@ -86,6 +86,7 @@ textarea {
 }
 
 .sticky-template {
+    float: left;
     width: 80px;
 }
 
