@@ -1,0 +1,66 @@
+﻿@model ToDoMvc.Models.TodoTaskTemplate
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TodoTaskTemplate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefaultTaskTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefaultTaskTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefaultCategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefaultCategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsTaskRepeatable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsTaskRepeatable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepeatPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepeatPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoveToFirstWorkDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoveToFirstWorkDay)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TodoTaskTemplateId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

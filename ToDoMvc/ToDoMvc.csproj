@@ -164,6 +164,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\TodoTaskController.cs" />
+    <Compile Include="Controllers\TodoTaskTemplatesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,12 +180,17 @@
     <Compile Include="Migrations\201503102123124_tagscats.Designer.cs">
       <DependentUpon>201503102123124_tagscats.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503102201386_templates1.cs" />
+    <Compile Include="Migrations\201503102201386_templates1.Designer.cs">
+      <DependentUpon>201503102201386_templates1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Accounts\IdentityModels.cs" />
     <Compile Include="Models\Accounts\ManageViewModels.cs" />
+    <Compile Include="Models\RepeatPeriod.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TodoTask.cs" />
     <Compile Include="Models\TodoTaskTemplate.cs" />
@@ -294,6 +300,11 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\TodoTaskTemplates\Create.cshtml" />
+    <Content Include="Views\TodoTaskTemplates\Delete.cshtml" />
+    <Content Include="Views\TodoTaskTemplates\Details.cshtml" />
+    <Content Include="Views\TodoTaskTemplates\Edit.cshtml" />
+    <Content Include="Views\TodoTaskTemplates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503102123124_tagscats.resx">
       <DependentUpon>201503102123124_tagscats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503102201386_templates1.resx">
+      <DependentUpon>201503102201386_templates1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
