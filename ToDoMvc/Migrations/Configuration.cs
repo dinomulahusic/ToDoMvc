@@ -10,7 +10,7 @@ namespace ToDoMvc.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ToDoMvc.Models.ApplicationDbContext context)
@@ -30,17 +30,22 @@ namespace ToDoMvc.Migrations
 
             context.TodoTasks.AddOrUpdate(
                     tt => tt.Title,
-                    new TodoTask() { Title = "todo1", Date = "2015-03-07" },
-                    new TodoTask() { Title = "todo2", Date = "2015-03-07" },
-                    new TodoTask() { Title = "todo3", Date = "2015-03-08" },
-                    new TodoTask() { Title = "todo4", Date = "2015-03-06" },
-                    new TodoTask() { Title = "todo5", Date = "2015-03-10" },
-                    new TodoTask() { Title = "todo6", Date = "2015-03-10" }
+                    new TodoTask() { Title = "todo1", Date = DateTime.Now.Date.ToString("yyyy-mm-dd") },
+                    new TodoTask() { Title = "todo2", Date = DateTime.Now.Date.AddDays(1).ToString("yyyy-mm-dd") },
+                    new TodoTask() { Title = "todo3", Date = DateTime.Now.Date.AddDays(1).ToString("yyyy-mm-dd") },
+                    new TodoTask() { Title = "todo4", Date = DateTime.Now.Date.AddDays(1).ToString("yyyy-mm-dd") },
+                    new TodoTask() { Title = "todo5", Date = DateTime.Now.Date.AddDays(-1).ToString("yyyy-mm-dd") },
+                    new TodoTask() { Title = "todo6", Date = DateTime.Now.Date.AddDays(2).ToString("yyyy-mm-dd") }
+                );
+
+            context.Categories.AddOrUpdate(
+                    x => x.Name,
+                    new Category() { CategoryId = 1, Name = "Test category", Color="#aaaaaa" }
                 );
 
             context.TodoTaskTemplates.AddOrUpdate(
                     x => x.Name,
-                    new TodoTaskTemplate() { TodoTaskTemplateId = 1, Name = "Default task", DefaultTaskTitle="todo" }
+                    new TodoTaskTemplate() { TodoTaskTemplateId = 1, Name = "Default task", DefaultTaskTitle="todo", CategoryId = 1, IsTaskRepeatable = true, MoveToFirstWorkDay = true, RepeatPeriod = RepeatPeriod.Day}
                 );
         }
     }

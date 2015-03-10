@@ -14,10 +14,10 @@ namespace ToDoMvc.Models
         [Display(Name="Default Task Title")]
         public string DefaultTaskTitle { get; set; }
 
-        public int DefaultCategoryId { get; set; }
+        public int CategoryId { get; set; }
 
-        [Display(Name = "Default Category")]
-        public Category DefaultCategory { get; set; }
+        [Display(Name = "Category")]
+        public Category Category { get; set; }
 
         [Display(Name = "Is Task Repeatable")]
         public bool IsTaskRepeatable { get; set; }

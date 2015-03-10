@@ -168,22 +168,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503071838376_initial.cs" />
-    <Compile Include="Migrations\201503071838376_initial.Designer.cs">
-      <DependentUpon>201503071838376_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503081625425_templates.cs" />
-    <Compile Include="Migrations\201503081625425_templates.Designer.cs">
-      <DependentUpon>201503081625425_templates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503102123124_tagscats.cs" />
-    <Compile Include="Migrations\201503102123124_tagscats.Designer.cs">
-      <DependentUpon>201503102123124_tagscats.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503102201386_templates1.cs" />
-    <Compile Include="Migrations\201503102201386_templates1.Designer.cs">
-      <DependentUpon>201503102201386_templates1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -316,20 +300,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503071838376_initial.resx">
-      <DependentUpon>201503071838376_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503081625425_templates.resx">
-      <DependentUpon>201503081625425_templates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503102123124_tagscats.resx">
-      <DependentUpon>201503102123124_tagscats.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503102201386_templates1.resx">
-      <DependentUpon>201503102201386_templates1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
