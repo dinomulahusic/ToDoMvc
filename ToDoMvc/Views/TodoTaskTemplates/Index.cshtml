@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.DefaultTaskTitle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DefaultCategoryId)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsTaskRepeatable)
@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.DefaultTaskTitle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DefaultCategoryId)
+            @Html.DisplayFor(modelItem => item.Category.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsTaskRepeatable)

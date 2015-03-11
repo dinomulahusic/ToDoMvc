@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ToDoMvc.Models;
+using ToDoMvc.Models.ViewModels;
 
 namespace ToDoMvc.Controllers
 {
@@ -39,7 +40,12 @@ namespace ToDoMvc.Controllers
         // GET: TodoTaskTemplates/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new TodoTaskTemplateVM()
+            {
+                Template = new TodoTaskTemplate(),
+                Categories = new SelectList(db.Categories.ToList(), "CategoryId", "Name")
+            };
+            return View(model);
         }
 
         // POST: TodoTaskTemplates/Create
@@ -47,11 +53,11 @@ namespace ToDoMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TodoTaskTemplateId,Name,DefaultTaskTitle,DefaultCategoryId,IsTaskRepeatable,RepeatPeriod,MoveToFirstWorkDay")] TodoTaskTemplate todoTaskTemplate)
+        public async Task<ActionResult> Create(TodoTaskTemplateVM todoTaskTemplate)
         {
             if (ModelState.IsValid)
             {
-                db.TodoTaskTemplates.Add(todoTaskTemplate);
+                db.TodoTaskTemplates.Add(todoTaskTemplate.Template);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

@@ -17,7 +17,7 @@ namespace ToDoMvc.Models
         public int CategoryId { get; set; }
 
         [Display(Name = "Category")]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         [Display(Name = "Is Task Repeatable")]
         public bool IsTaskRepeatable { get; set; }
