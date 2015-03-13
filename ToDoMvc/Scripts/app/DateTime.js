@@ -22,7 +22,7 @@
         var fullYear = this.value.getFullYear();
         var year = fullYear.toString().substring(2);
         var month = this.value.getMonth() + 1;
-        var day = this.value.getDay();
+        var day = this.value.getDate();
 
         if (day < 10) {
             day = '0' + day
@@ -53,8 +53,5 @@
         dateTime.value.setDate(dateTime.value.getDate() + daysToAdd);
     }
 
-    return {
-        now: new DateTime(),
-        parse: function (year, month, day, hours, minutes, seconds) { return new DateTime(year, month, day, hours, minutes, seconds); }
-    }
+    return DateTime
 }());

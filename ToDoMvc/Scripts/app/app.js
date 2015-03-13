@@ -23,7 +23,8 @@
         $('.todo-board > div:last-child').remove();
 
         var firstDate = $('.todo-board > div:first-child').attr('id').substring(4);
-        var previousDate = getDateFormated(addDays(firstDate, -1));
+        firstDate = new DateTime(firstDate.substring(0,4), firstDate.substring(5,7), firstDate.substring(8,10));
+        var previousDate = firstDate.addDays(-1).getShortDate();// getDateFormated(addDays(firstDate, -1));
 
         var prevCol = $(
             '<div class="col-md-2 todo-column" id="div-' + previousDate + '">' +
@@ -33,6 +34,24 @@
         );
 
         $('.todo-board').prepend(prevCol);
+        dataservice.getTasksByDate(previousDate, {
+            success: function (data) {
+
+                var dayColumn = $('#div-' + previousDate);
+                dayColumn.children('.todo-column-header').text(previousDate);
+                var content = dayColumn.find('.todo-column-content');
+
+                content.children().remove();
+
+                $.each(data, function (i, item) {
+                    content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
+                });
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+
         loadData('div-' + previousDate);
     };
 
@@ -53,30 +72,8 @@
         loadData('div-' + nextDate);
     };
 
-    var addDays = function (date, days) {
-        dateObj = new Date(date.substring(0, 4), date.substring(5, 7) - 1, date.substring(8, 10));
-        dateObj.setDate(dateObj.getDate() + days);
-        return dateObj;
-    };
-
-    var getDateFormated = function (date) {
-        var dd = date.getDate();
-        var mm = date.getMonth() + 1; //January is 0!
-        var yyyy = date.getFullYear();
-
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-
-        return yyyy + '-' + mm + '-' + dd;
-    };
-
     var highlightCurrentDate = function () {
-        var today = getDateFormated(new Date());
+        var today = (new DateTime()).getShortDate();
 
         $('.todo-column-header-highlight').removeClass('todo-column-header-highlight');
         $('.todo-column-content-highlight').removeClass('todo-column-content-highlight');
