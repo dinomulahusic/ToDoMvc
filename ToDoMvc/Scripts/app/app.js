@@ -1,4 +1,24 @@
-﻿define('app', ['app.dataservice'], function (dataservice) {
+﻿define('app', ['app.dataservice', 'DateTime'], function (dataservice, DateTime) {
+
+    var loadDateColumn = function (date) {
+        dataservice.getTasksByDate(date, {
+            success: function (data) {
+
+                var dayColumn = $('#div-' + date);
+                dayColumn.children('.todo-column-header').text(date);
+                var content = dayColumn.find('.todo-column-content');
+
+                content.children().remove();
+
+                $.each(data, function (i, item) {
+                    content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
+                });
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    };
 
     var addTodoTask = function (event, ui) {
         var todoTaskId = ui.item.attr("id");
@@ -12,8 +32,14 @@
         var date = ui.item.closest(".todo-column").attr("id").substring(4);
 
         if (todoTaskId.indexOf('temp-') == 0) {
-            $.post("/TodoTask/CreateTask", { taskDate: date, title: 'new task' }, function () { }, "json");
-            loadData('div-' + date);
+            dataservice.createTask({ taskDate: date, title: 'new task' }, {
+                success: function () {
+                    loadDateColumn(date);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
         } else {
             $.post("/TodoTask/UpdateTask", { todoTaskId: todoTaskId, newTaskDate: date }, function () { }, "json");
         }
@@ -23,8 +49,8 @@
         $('.todo-board > div:last-child').remove();
 
         var firstDate = $('.todo-board > div:first-child').attr('id').substring(4);
-        firstDate = new DateTime(firstDate.substring(0,4), firstDate.substring(5,7), firstDate.substring(8,10));
-        var previousDate = firstDate.addDays(-1).getShortDate();// getDateFormated(addDays(firstDate, -1));
+        firstDate = new DateTime(firstDate.substring(0, 4), firstDate.substring(5, 7), firstDate.substring(8, 10));
+        var previousDate = firstDate.addDays(-1).getShortDate();
 
         var prevCol = $(
             '<div class="col-md-2 todo-column" id="div-' + previousDate + '">' +
@@ -34,32 +60,18 @@
         );
 
         $('.todo-board').prepend(prevCol);
-        dataservice.getTasksByDate(previousDate, {
-            success: function (data) {
-
-                var dayColumn = $('#div-' + previousDate);
-                dayColumn.children('.todo-column-header').text(previousDate);
-                var content = dayColumn.find('.todo-column-content');
-
-                content.children().remove();
-
-                $.each(data, function (i, item) {
-                    content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
-                });
-            },
-            error: function (error) {
-                alert(error);
-            }
-        });
-
-        loadData('div-' + previousDate);
+        loadDateColumn(previousDate);
     };
 
     var moveOneDayAfter = function () {
         $('.todo-board > div:first-child').remove();
 
+        var firstDate = $('.todo-board > div:first-child').attr('id').substring(4);
+
+
         var lastDate = $('.todo-board > div:last-child').attr('id').substring(4);
-        var nextDate = getDateFormated(addDays(lastDate, 1));
+        lastDate = new DateTime(lastDate.substring(0, 4), lastDate.substring(5, 7), lastDate.substring(8, 10));
+        var nextDate = lastDate.addDays(1).getShortDate();
 
         var nextCol = $(
             '<div class="col-md-2 todo-column" id="div-' + nextDate + '">' +
@@ -69,7 +81,7 @@
         );
 
         $('.todo-board').append(nextCol);
-        loadData('div-' + nextDate);
+        loadDateColumn(nextDate);
     };
 
     var highlightCurrentDate = function () {
@@ -84,23 +96,7 @@
 
     var start = function () {
         $('.todo-column').each(function (i, el) {
-            dataservice.getTasksByDate(el.id.substring(4), {
-                success: function (data) {
-
-                    var dayColumn = $('#' + el.id);
-                    dayColumn.children('.todo-column-header').text(el.id.substring(4));
-                    var content = dayColumn.find('.todo-column-content');
-
-                    content.children().remove();
-
-                    $.each(data, function (i, item) {
-                        content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
-                    });
-                },
-                error: function (error) {
-                    alert(error);
-                }
-            });
+            loadDateColumn(el.id.substring(4));
         });
 
         dataservice.loadTemplates();

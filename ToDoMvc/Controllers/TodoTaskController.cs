@@ -39,6 +39,8 @@ namespace ToDoMvc.Controllers
             db.TodoTasks.Add(task);
 
             db.SaveChanges();
+
+            //return Json("done", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

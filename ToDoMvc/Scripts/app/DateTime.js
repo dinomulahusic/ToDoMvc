@@ -1,4 +1,4 @@
-﻿window.DateTime = (function () {
+﻿define('DateTime', [], function () {
     function DateTime(year, month, day, hours, minutes, seconds) {
         var date = new Date();
 
@@ -53,5 +53,5 @@
         dateTime.value.setDate(dateTime.value.getDate() + daysToAdd);
     }
 
-    return DateTime
-}());
+    return DateTime;
+});
