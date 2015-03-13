@@ -33,9 +33,13 @@
         });
     };
 
+    var logError = function(error) {
+        console.log(error);
+    };
+
     //{ taskDate: date, title: 'new task' }
-    var createTask = function (todoTask, callbacks) {
-        postJson("/TodoTask/CreateTask", todoTask, callbacks)
+    var createTask = function (todoTask, done, error) {
+        postJson("/TodoTask/CreateTask", todoTask, { success: done, error: function () { (typeof error === 'undefined') ? logError : error; } });
     }
 
     var getTasksByDate = function (date, callbacks) {

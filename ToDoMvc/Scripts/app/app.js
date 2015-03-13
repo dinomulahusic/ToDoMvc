@@ -32,14 +32,7 @@
         var date = ui.item.closest(".todo-column").attr("id").substring(4);
 
         if (todoTaskId.indexOf('temp-') == 0) {
-            dataservice.createTask({ taskDate: date, title: 'new task' }, {
-                success: function () {
-                    loadDateColumn(date);
-                },
-                error: function (err) {
-                    alert(err);
-                }
-            });
+            dataservice.createTask({ taskDate: date, title: 'new task' }, function () { loadDateColumn(date); });
         } else {
             $.post("/TodoTask/UpdateTask", { todoTaskId: todoTaskId, newTaskDate: date }, function () { }, "json");
         }
