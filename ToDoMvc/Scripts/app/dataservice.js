@@ -39,11 +39,15 @@
 
     //{ taskDate: date, title: 'new task' }
     var createTask = function (todoTask, done, error) {
-        postJson("/TodoTask/CreateTask", todoTask, { success: done, error: function () { (typeof error === 'undefined') ? logError : error; } });
+        postJson("/TodoTask/CreateTask", todoTask, { success: done, error: function (msg) { (typeof error === 'undefined') ? logError(msg) : error(msg); } });
     }
 
-    var getTasksByDate = function (date, callbacks) {
-        getJson("/TodoTask/GetTodoTasks", { date: date }, callbacks);
+    var updateTask = function (todoTask, done, error) {
+        postJson("/TodoTask/UpdateTask", todoTask, { success: done, error: function (msg) { (typeof error === 'undefined') ? logError(msg) : error(msg); } });
+    }
+
+    var getTasksByDate = function (date, done, error) {
+        getJson("/TodoTask/GetTodoTasks", { date: date }, { success: done, error: function (msg) { (typeof error === 'undefined') ? logError(msg) : error(msg); } });
     };
 
     var loadTemplates = function () {
@@ -60,6 +64,7 @@
     return {
         getTasksByDate: getTasksByDate,
         loadTemplates: loadTemplates,
-        createTask: createTask
+        createTask: createTask,
+        updateTask: updateTask
     };
 });

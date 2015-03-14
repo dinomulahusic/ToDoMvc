@@ -1,23 +1,19 @@
 ﻿define('app', ['app.dataservice', 'DateTime'], function (dataservice, DateTime) {
 
     var loadDateColumn = function (date) {
-        dataservice.getTasksByDate(date, {
-            success: function (data) {
+        var displayDateColumnItems = function (data) {
+            var dayColumn = $('#div-' + date);
+            dayColumn.children('.todo-column-header').text(date);
+            var content = dayColumn.find('.todo-column-content');
 
-                var dayColumn = $('#div-' + date);
-                dayColumn.children('.todo-column-header').text(date);
-                var content = dayColumn.find('.todo-column-content');
+            content.children().remove();
 
-                content.children().remove();
+            $.each(data, function (i, item) {
+                content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
+            });
+        };
 
-                $.each(data, function (i, item) {
-                    content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
-                });
-            },
-            error: function (error) {
-                alert(error);
-            }
-        });
+        dataservice.getTasksByDate(date, displayDateColumnItems);
     };
 
     var addTodoTask = function (event, ui) {
@@ -34,7 +30,7 @@
         if (todoTaskId.indexOf('temp-') == 0) {
             dataservice.createTask({ taskDate: date, title: 'new task' }, function () { loadDateColumn(date); });
         } else {
-            $.post("/TodoTask/UpdateTask", { todoTaskId: todoTaskId, newTaskDate: date }, function () { }, "json");
+            dataservice.updateTask({ todoTaskId: todoTaskId, newTaskDate: date }, function () { loadDateColumn(date); });
         }
     };
 
