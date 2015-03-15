@@ -55,9 +55,6 @@
     var moveOneDayAfter = function () {
         $('.todo-board > div:first-child').remove();
 
-        var firstDate = $('.todo-board > div:first-child').attr('id').substring(4);
-
-
         var lastDate = $('.todo-board > div:last-child').attr('id').substring(4);
         lastDate = new DateTime(lastDate.substring(0, 4), lastDate.substring(5, 7), lastDate.substring(8, 10));
         var nextDate = lastDate.addDays(1).getShortDate();
@@ -119,39 +116,3 @@
         start: start
     }
 });
-
-/*var main = function () {
-    $('.todo-column').each(function (i, el) {
-        loadData(el.id);
-    });
-
-    loadTemplates();
-
-    highlightCurrentDate();
-
-    $('#moveOneDateBefore').button().click(function () {
-        moveOneDayBefore();
-    });
-
-    $('#moveOneDateAfter').button().click(function () {
-        moveOneDayAfter();
-    });
-
-    $('.todo-column-content').sortable({
-        connectWith: ".todo-column-content",
-        receive: addTodoTask,
-        stop: todoTaskStop
-    }).disableSelection();
-
-    $('.template-area').sortable({
-        connectWith: ".todo-column-content",
-        helper: "clone",
-        stop: function (event, ui) {
-            $(this).sortable('cancel');
-        }
-    }).disableSelection();
-};
-
-
-
-$(document).ready(main);*/
