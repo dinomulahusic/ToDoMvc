@@ -13,8 +13,8 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 60px;
-    height: 80%;
+    padding-top: 60px;
+    height: 100%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -32,7 +32,7 @@ textarea {
 }
 
 .todo-board {
-    height: 100%;
+    height: 80%;
 }
 
 .todo-column {
@@ -53,6 +53,7 @@ textarea {
 .todo-column-content {
     background-color: #F0F0F0;
     height: 70%;
+    padding: 3px;
 }
 
 .todo-column-content-highlight {
@@ -64,16 +65,16 @@ textarea {
     cursor: pointer;
     margin: 5px auto 0 auto;
     padding: 2px 2px;
-    width: 90%;
+    width: 100%;
     /* Font */
     font-family: 'Nothing You Could Do', Arial;
     font-size: 1em;
     /* Border */
     border: 1px #E8D547 solid;
     /* Shadow */
-    -moz-box-shadow: 0px 0px 6px 1px #333333;
+    /*-moz-box-shadow: 0px 0px 6px 1px #333333;
     -webkit-box-shadow: 0px 0px 6px 1px #333333;
-    box-shadow: 0px 0px 6px 1px #333333;
+    box-shadow: 0px 0px 6px 1px #333333;*/
     /* Background */
     background: #fefdca; /* Old browsers */
     background: -moz-linear-gradient(top, #fefdca 0%, #f7f381 100%); /* FF3.6+ */
