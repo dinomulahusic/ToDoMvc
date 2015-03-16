@@ -2,7 +2,7 @@
 
     var loadDateColumn = function (date) {
         var displayDateColumnItems = function (data) {
-            var dayColumn = $('#div-' + date);
+            var dayColumn = $('.todo-column[data-date="' + date + '"]');
             dayColumn.children('.todo-column-header').text(date);
             var content = dayColumn.find('.todo-column-content');
 
@@ -37,12 +37,12 @@
     var moveOneDayBefore = function () {
         $('.todo-board > div:last-child').remove();
 
-        var firstDate = $('.todo-board > div:first-child').attr('id').substring(4);
-        firstDate = new DateTime(firstDate.substring(0, 4), firstDate.substring(5, 7), firstDate.substring(8, 10));
+        var firstDate = $('.todo-board > div:first-child').data("date");
+        firstDate = new DateTime(firstDate);
         var previousDate = firstDate.addDays(-1).getShortDate();
 
         var prevCol = $(
-            '<div class="col-md-2 todo-column" id="div-' + previousDate + '">' +
+            '<div class="col-md-2 todo-column" data-date="' + previousDate + '">' +
                 '<div class="todo-column-header"></div>' +
                 '<div class="todo-column-content"></div>' +
             '</div>'
@@ -55,12 +55,12 @@
     var moveOneDayAfter = function () {
         $('.todo-board > div:first-child').remove();
 
-        var lastDate = $('.todo-board > div:last-child').attr('id').substring(4);
-        lastDate = new DateTime(lastDate.substring(0, 4), lastDate.substring(5, 7), lastDate.substring(8, 10));
+        var lastDate = $('.todo-board > div:last-child').data("date");
+        lastDate = new DateTime(lastDate);
         var nextDate = lastDate.addDays(1).getShortDate();
 
         var nextCol = $(
-            '<div class="col-md-2 todo-column" id="div-' + nextDate + '">' +
+            '<div class="col-md-2 todo-column" data-date="' + nextDate + '">' +
                 '<div class="todo-column-header"></div>' +
                 '<div class="todo-column-content"></div>' +
             '</div>'
@@ -76,13 +76,15 @@
         $('.todo-column-header-highlight').removeClass('todo-column-header-highlight');
         $('.todo-column-content-highlight').removeClass('todo-column-content-highlight');
 
-        $('#div-' + today).children('.todo-column-header').addClass('todo-column-header-highlight');
-        $('#div-' + today).children('.todo-column-content').addClass('todo-column-content-highlight');
+        var todoColumn$ = $('.todo-column[data-date="' + today + '"]');
+
+        todoColumn$.children('.todo-column-header').addClass('todo-column-header-highlight');
+        todoColumn$.children('.todo-column-content').addClass('todo-column-content-highlight');
     };
 
     var start = function () {
         $('.todo-column').each(function (i, el) {
-            loadDateColumn(el.id.substring(4));
+            loadDateColumn($(el).data("date"));
         });
 
         dataservice.loadTemplates();

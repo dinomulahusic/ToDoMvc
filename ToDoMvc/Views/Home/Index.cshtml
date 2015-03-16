@@ -8,7 +8,7 @@
 <div class="row todo-board">
     @for (int i = -1; i < 5; i++)
     {
-        <div class="col-md-2 todo-column" id="div-@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")">
+        <div class="col-md-2 todo-column" data-date="@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")">
             <div class="todo-column-header"></div>
             <div class="todo-column-content"></div>
         </div>

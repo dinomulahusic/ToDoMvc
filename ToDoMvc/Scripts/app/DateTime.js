@@ -1,18 +1,32 @@
 ﻿define('DateTime', [], function () {
-    function DateTime(year, month, day, hours, minutes, seconds) {
+    function DateTime() {
         var date = new Date();
 
-        if (year) date.setFullYear(year);
-        if (month) date.setMonth(month - 1);
-        if (day) date.setDate(day);
-        if (hours) date.setHours(hours);
-        if (minutes) date.setMinutes(minutes);
-        if (seconds) date.setSeconds(seconds);
+        if (arguments.length == 1) {
+            if (typeof arguments[0] === "string") {
+                var dateString = arguments[0];
+                var year = parseInt(dateString.substring(0, 4));
+                var month = parseInt(dateString.substring(5, 7));
+                var day = parseInt(dateString.substring(8, 10));
+
+                date.setFullYear(year);
+                date.setMonth(month - 1);
+                date.setDate(day);
+            }
+        } else {
+            if (arguments[0]) date.setFullYear(arguments[0]);
+            if (arguments[1]) date.setMonth(arguments[1] - 1);
+            if (arguments[2]) date.setDate(arguments[2]);
+
+            if (arguments[3]) date.setHours(arguments[3]);
+            if (arguments[4]) date.setMinutes(arguments[4]);
+            if (arguments[5]) date.setSeconds(arguments[5]);
+        }
 
         this.value = date;
     }
 
-    DateTime.prototype.clone = function() {
+    DateTime.prototype.clone = function () {
         return new DateTime(this.value.getFullYear(), this.value.getMonth() + 1, this.value.getDate(), this.value.getHours(), this.value.getMinutes(), this.value.getSeconds());
     }
 
@@ -31,7 +45,7 @@
         if (month < 10) {
             month = '0' + month
         }
-        
+
         if (format === "yyyy-mm-dd") {
             return fullYear + "-" + month + "-" + day;
         }
