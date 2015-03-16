@@ -26,7 +26,7 @@
         var date = ui.item.closest(".todo-column").data("date");
 
         if (ui.item.hasClass('sticky-template')) {
-            dataservice.createTask({ taskDate: date, title: 'new task' }, function () { loadDateColumn(date); });
+            dataservice.createTask({ taskDate: date, title: ui.item.data('default-title') }, function () { loadDateColumn(date); });
         } else {
             dataservice.updateTask({ todoTaskId: ui.item.attr("id"), newTaskDate: date }, function () { loadDateColumn(date); });
         }
@@ -86,7 +86,7 @@
             templatesArea.children().remove();
 
             $.each(data, function (i, item) {
-                templatesArea.append('<div class="sticky sticky-template">' + item.Name + '</div>')
+                templatesArea.append('<div class="sticky sticky-template" data-default-title="' + item.DefaultTaskTitle + '">' + item.Name + '</div>')
             });
         };
 

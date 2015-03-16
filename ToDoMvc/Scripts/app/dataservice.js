@@ -37,7 +37,6 @@
         console.log(error);
     };
 
-    //{ taskDate: date, title: 'new task' }
     var createTask = function (todoTask, done, error) {
         postJson("/TodoTask/CreateTask", todoTask, { success: done, error: function (msg) { (typeof error === 'undefined') ? logError(msg) : error(msg); } });
     }
