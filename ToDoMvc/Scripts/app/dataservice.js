@@ -50,15 +50,8 @@
         getJson("/TodoTask/GetTodoTasks", { date: date }, { success: done, error: function (msg) { (typeof error === 'undefined') ? logError(msg) : error(msg); } });
     };
 
-    var loadTemplates = function () {
-        $.getJSON("/TodoTask/GetTodoTaskTemplates", null, function (data) {
-            var templatesArea = $('.template-area');
-            templatesArea.children().remove();
-
-            $.each(data, function (i, item) {
-                templatesArea.append('<div id="temp-' + item.TodoTaskTemplateId + '" class="sticky sticky-template">' + item.Name + '</div>')
-            });
-        });
+    var loadTemplates = function (done, error) {
+        getJson("/TodoTask/GetTodoTaskTemplates", null, { success: done, error: function (msg) { (typeof error === 'undefined') ? logError(msg) : error(msg); } });
     };
 
     return {

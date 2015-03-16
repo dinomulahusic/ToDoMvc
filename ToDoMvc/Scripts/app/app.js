@@ -17,20 +17,18 @@
     };
 
     var addTodoTask = function (event, ui) {
-        var todoTaskId = ui.item.attr("id");
-        if (todoTaskId.indexOf('temp-') == 0) {
+        if (ui.item.hasClass('sticky-template')) {
             todoTaskStop(event, ui);
         }
     };
 
     var todoTaskStop = function (event, ui) {
-        var todoTaskId = ui.item.attr("id");
-        var date = ui.item.closest(".todo-column").attr("id").substring(4);
+        var date = ui.item.closest(".todo-column").data("date");
 
-        if (todoTaskId.indexOf('temp-') == 0) {
+        if (ui.item.hasClass('sticky-template')) {
             dataservice.createTask({ taskDate: date, title: 'new task' }, function () { loadDateColumn(date); });
         } else {
-            dataservice.updateTask({ todoTaskId: todoTaskId, newTaskDate: date }, function () { loadDateColumn(date); });
+            dataservice.updateTask({ todoTaskId: ui.item.attr("id"), newTaskDate: date }, function () { loadDateColumn(date); });
         }
     };
 
@@ -82,12 +80,25 @@
         todoColumn$.children('.todo-column-content').addClass('todo-column-content-highlight');
     };
 
+    var loadTemplates = function () {
+        var displayTemplates = function (data) {
+            var templatesArea = $('.template-area');
+            templatesArea.children().remove();
+
+            $.each(data, function (i, item) {
+                templatesArea.append('<div class="sticky sticky-template">' + item.Name + '</div>')
+            });
+        };
+
+        dataservice.loadTemplates(displayTemplates);
+    };
+
     var start = function () {
         $('.todo-column').each(function (i, el) {
             loadDateColumn($(el).data("date"));
         });
 
-        dataservice.loadTemplates();
+        loadTemplates();
 
         highlightCurrentDate();
 
