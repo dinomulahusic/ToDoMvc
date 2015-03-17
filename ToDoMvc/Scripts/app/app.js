@@ -39,12 +39,20 @@
         firstDate = new DateTime(firstDate);
         var previousDate = firstDate.addDays(-1).getShortDate();
 
-        var prevCol = $(
-            '<div class="col-md-2 todo-column" data-date="' + previousDate + '">' +
+        var source =  '<div class="col-md-2 todo-column" data-date="{{date}}">' +
                 '<div class="todo-column-header"></div>' +
                 '<div class="todo-column-content"></div>' +
-            '</div>'
-        );
+            '</div>';
+            
+        var template = Handlebars.compile(source);
+
+        var data = {
+            date: previousDate
+        };
+
+        var result = template(data);
+
+        var prevCol = $(result);
 
         $('.todo-board').prepend(prevCol);
         loadDateColumn(previousDate);

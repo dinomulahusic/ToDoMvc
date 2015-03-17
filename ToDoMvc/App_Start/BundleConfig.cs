@@ -10,7 +10,8 @@ namespace ToDoMvc
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery-ui-1.11.3.js"));
+                        "~/Scripts/jquery-ui-1.11.3.js",
+                        "~/Scripts/handlebars-v3.0.0.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").IncludeDirectory(
                         "~/Scripts/app", "*.js"));
