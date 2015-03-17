@@ -70,14 +70,24 @@
             templatesArea.children().remove();
 
             $.each(data, function (i, item) {
-                templatesArea.append('<div class="sticky sticky-template" data-default-title="' + item.DefaultTaskTitle + '">' + item.Name + '</div>')
+                templatesArea.append(templates.getStickyTemplateHtml(item.DefaultTaskTitle, item.Name));
             });
         };
 
         dataservice.loadTemplates(displayTemplates);
     };
 
+    var displayColumns = function () {
+        var todoBoard$ = $('.todo-board');
+
+        for (var i = -1; i < 5; i++) {
+            todoBoard$.append(templates.getColumnHtml((new DateTime()).addDays(i).getShortDate()));
+        }
+    };
+
     var start = function () {
+        displayColumns();
+
         $('.todo-column').each(function (i, el) {
             loadDateColumn($(el).data("date"));
         });

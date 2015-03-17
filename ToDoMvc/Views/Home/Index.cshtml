@@ -6,13 +6,7 @@
 <a id="moveOneDateAfter" style="float: right" href="#">&rArr;</a>
 <br />
 <div class="row todo-board">
-    @for (int i = -1; i < 5; i++)
-    {
-        <div class="col-md-2 todo-column" data-date="@DateTime.Now.Date.AddDays(i).ToString("yyyy-MM-dd")">
-            <div class="todo-column-header"></div>
-            <div class="todo-column-content"></div>
-        </div>
-    }
+    
 </div>
 <div class="row">
     <div class="col-md-1">
