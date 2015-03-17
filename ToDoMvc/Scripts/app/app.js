@@ -1,4 +1,4 @@
-﻿define('app', ['app.dataservice', 'DateTime'], function (dataservice, DateTime) {
+﻿define('app', ['app.dataservice', 'DateTime', 'templates'], function (dataservice, DateTime, templates) {
 
     var loadDateColumn = function (date) {
         var displayDateColumnItems = function (data) {
@@ -39,12 +39,7 @@
         firstDate = new DateTime(firstDate);
         var previousDate = firstDate.addDays(-1).getShortDate();
 
-        var source =  '<div class="col-md-2 todo-column" data-date="{{date}}">' +
-                '<div class="todo-column-header"></div>' +
-                '<div class="todo-column-content"></div>' +
-            '</div>';
-            
-        var template = Handlebars.compile(source);
+        var template = Handlebars.compile(templates.taskTemplate);
 
         var data = {
             date: previousDate
@@ -65,14 +60,22 @@
         lastDate = new DateTime(lastDate);
         var nextDate = lastDate.addDays(1).getShortDate();
 
-        var nextCol = $(
+        var template = Handlebars.compile(templates.taskTemplate);
+
+        var data = {
+            date: nextDate
+        };
+
+        var result = template(data);
+
+        /*var nextCol = $(
             '<div class="col-md-2 todo-column" data-date="' + nextDate + '">' +
                 '<div class="todo-column-header"></div>' +
                 '<div class="todo-column-content"></div>' +
             '</div>'
-        );
+        );*/
 
-        $('.todo-board').append(nextCol);
+        $('.todo-board').append(result);
         loadDateColumn(nextDate);
     };
 

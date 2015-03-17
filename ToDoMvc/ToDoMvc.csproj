@@ -224,6 +224,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\dataservice.js" />
+    <Content Include="Scripts\app\templates.js" />
     <Content Include="Scripts\app\DateTime.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
