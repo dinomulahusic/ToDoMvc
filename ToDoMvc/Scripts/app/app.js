@@ -9,7 +9,7 @@
             content.children().remove();
 
             $.each(data, function (i, item) {
-                content.append('<div id="' + item.TodoTaskID + '" class="sticky">' + item.Title + '</div>')
+                content.append(templates.getTaskHtml(item.TodoTaskID, item.Title));
             });
         };
 
@@ -36,20 +36,9 @@
         $('.todo-board > div:last-child').remove();
 
         var firstDate = $('.todo-board > div:first-child').data("date");
-        firstDate = new DateTime(firstDate);
-        var previousDate = firstDate.addDays(-1).getShortDate();
+        var previousDate = (new DateTime(firstDate)).addDays(-1).getShortDate();
 
-        var template = Handlebars.compile(templates.taskTemplate);
-
-        var data = {
-            date: previousDate
-        };
-
-        var result = template(data);
-
-        var prevCol = $(result);
-
-        $('.todo-board').prepend(prevCol);
+        $('.todo-board').prepend(templates.getColumnHtml(previousDate));
         loadDateColumn(previousDate);
     };
 
@@ -57,25 +46,9 @@
         $('.todo-board > div:first-child').remove();
 
         var lastDate = $('.todo-board > div:last-child').data("date");
-        lastDate = new DateTime(lastDate);
-        var nextDate = lastDate.addDays(1).getShortDate();
+        var nextDate = (new DateTime(lastDate)).addDays(1).getShortDate();
 
-        var template = Handlebars.compile(templates.taskTemplate);
-
-        var data = {
-            date: nextDate
-        };
-
-        var result = template(data);
-
-        /*var nextCol = $(
-            '<div class="col-md-2 todo-column" data-date="' + nextDate + '">' +
-                '<div class="todo-column-header"></div>' +
-                '<div class="todo-column-content"></div>' +
-            '</div>'
-        );*/
-
-        $('.todo-board').append(result);
+        $('.todo-board').append(templates.getColumnHtml(nextDate));
         loadDateColumn(nextDate);
     };
 
