@@ -16,6 +16,14 @@
         dataservice.getTasksByDate(date, displayDateColumnItems);
     };
 
+    var makeColumnsSortable = function () {
+        $('.todo-column-content').sortable({
+            connectWith: ".todo-column-content",
+            receive: addTodoTask,
+            stop: todoTaskStop
+        }).disableSelection();
+    };
+
     var addTodoTask = function (event, ui) {
         if (ui.item.hasClass('sticky-template')) {
             todoTaskStop(event, ui);
@@ -40,6 +48,7 @@
 
         $('.todo-board').prepend(templates.getColumnHtml(previousDate));
         loadDateColumn(previousDate);
+        makeColumnsSortable();
     };
 
     var moveOneDayAfter = function () {
@@ -50,6 +59,7 @@
 
         $('.todo-board').append(templates.getColumnHtml(nextDate));
         loadDateColumn(nextDate);
+        makeColumnsSortable();
     };
 
     var highlightCurrentDate = function () {
@@ -104,11 +114,7 @@
             moveOneDayAfter();
         });
 
-        $('.todo-column-content').sortable({
-            connectWith: ".todo-column-content",
-            receive: addTodoTask,
-            stop: todoTaskStop
-        }).disableSelection();
+        makeColumnsSortable();
 
         $('.template-area').sortable({
             connectWith: ".todo-column-content",
