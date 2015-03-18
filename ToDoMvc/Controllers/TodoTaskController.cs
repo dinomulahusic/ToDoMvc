@@ -29,13 +29,23 @@ namespace ToDoMvc.Controllers
             {
                 task.Date = newTaskDate;
             }
-            
+
             db.SaveChanges();
         }
 
-        public void CreateTask(string taskDate, string title)
+        public void CreateTask(string taskDate, string title, int templateId)
         {
-            TodoTask task = new TodoTask() { Title = title, Date = taskDate };
+            TodoTaskTemplate template = db.TodoTaskTemplates.Find(templateId);
+
+            TodoTask task = new TodoTask() 
+                {   Title = title, 
+                    Date = taskDate, 
+                    Category = template.Category, 
+                    CategoryId = template.CategoryId,
+                    IsTaskRepeatable = template.IsTaskRepeatable,
+                    MoveToFirstWorkDay = template.MoveToFirstWorkDay,
+                    RepeatPeriod = template.RepeatPeriod
+                };
             db.TodoTasks.Add(task);
 
             db.SaveChanges();

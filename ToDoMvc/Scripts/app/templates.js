@@ -7,7 +7,7 @@
 
         this.taskTemplate = '<div id="{{taskId}}" class="sticky">{{taskTitle}}</div>';
 
-        this.stickyTemplateTemplate = '<div class="sticky sticky-template" data-default-title="{{defaultTaskTitle}}">{{itemName}}</div>';
+        this.stickyTemplateTemplate = '<div class="sticky sticky-template" data-default-title="{{defaultTaskTitle}}" data-template-id="{{templateId}}">{{itemName}}</div>';
     }
 
     templates.prototype.generateHtml = function (templateHtml, data) {
@@ -23,8 +23,8 @@
         return this.generateHtml(this.taskTemplate, { taskId: taskId, taskTitle: taskTitle });
     }
 
-    templates.prototype.getStickyTemplateHtml = function (defaultTaskTitle, itemName) {
-        return this.generateHtml(this.stickyTemplateTemplate, { defaultTaskTitle: defaultTaskTitle, itemName: itemName });
+    templates.prototype.getStickyTemplateHtml = function (defaultTaskTitle, itemName, templateId) {
+        return this.generateHtml(this.stickyTemplateTemplate, { defaultTaskTitle: defaultTaskTitle, itemName: itemName, templateId: templateId });
     }
 
     return new templates();
