@@ -95,6 +95,13 @@
         }
     };
 
+    var initializeDialogs = function () {
+        $("#createTaskDialog").dialog({
+            autoOpen: false,
+            dialogClass: "no-close"
+        });
+    };
+
     var start = function () {
         displayColumns();
 
@@ -103,6 +110,9 @@
         });
 
         loadTemplates();
+
+        initializeDialogs();
+        //$("#createTaskDialog").dialog("open");
 
         highlightCurrentDate();
 
