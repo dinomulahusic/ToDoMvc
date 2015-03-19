@@ -52,7 +52,7 @@ textarea {
 
 .todo-column-content {
     background-color: #F0F0F0;
-    height: 70%;
+    height: 85%;
     padding: 3px;
 }
 
@@ -71,24 +71,12 @@ textarea {
     font-size: 1em;
     /* Border */
     border: 1px #E8D547 solid;
-    /* Shadow */
-    /*-moz-box-shadow: 0px 0px 6px 1px #333333;
-    -webkit-box-shadow: 0px 0px 6px 1px #333333;
-    box-shadow: 0px 0px 6px 1px #333333;*/
-    /* Background */
-    background: #fefdca; /* Old browsers */
-    background: -moz-linear-gradient(top, #fefdca 0%, #f7f381 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdca), color-stop(100%,#f7f381)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #fefdca 0%,#f7f381 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #fefdca 0%,#f7f381 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, #fefdca 0%,#f7f381 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdca', endColorstr='#f7f381',GradientType=0 ); /* IE6-9 */
-    background: linear-gradient(top, #fefdca 0%,#f7f381 100%); /* W3C; A catch-all for everything else */
 }
 
 .sticky-template {
     float: left;
     width: 80px;
+    margin: 3px;
 }
 
     .sticky ol {
@@ -108,6 +96,7 @@ ul {
 }
 
 .template-area {
+    height: 100%;
     background-color: #D8D8D8;
     display: inline-block;
     padding: 5px;

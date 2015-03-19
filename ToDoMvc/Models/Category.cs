@@ -11,6 +11,7 @@ namespace ToDoMvc.Models
         public int CategoryId { get; set;}
         [Required, StringLength(20)]
         public string Name { get; set; }
-        public string Color { get; set; }
+        public string BackgroundColor { get; set; }
+        public string ForegroundColor { get; set; }
     }
 }

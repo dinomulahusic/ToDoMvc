@@ -40,7 +40,7 @@ namespace ToDoMvc.Migrations
 
             context.Categories.AddOrUpdate(
                     x => x.Name,
-                    new Category() { CategoryId = 1, Name = "Test category", Color="#aaaaaa" }
+                    new Category() { CategoryId = 1, Name = "Test category", BackgroundColor="#aaaaaa" }
                 );
 
             context.TodoTaskTemplates.AddOrUpdate(

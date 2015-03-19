@@ -9,7 +9,7 @@
             content.children().remove();
 
             $.each(data, function (i, item) {
-                content.append(templates.getTaskHtml(item.TodoTaskID, item.Title));
+                content.append(templates.getTaskHtml(item.TodoTaskID, item.Title, item.Category.BackgroundColor,  item.Category.ForegroundColor));
             });
         };
 
@@ -80,7 +80,7 @@
             templatesArea.children().remove();
 
             $.each(data, function (i, item) {
-                templatesArea.append(templates.getStickyTemplateHtml(item.DefaultTaskTitle, item.Name, item.TodoTaskTemplateId));
+                templatesArea.append(templates.getStickyTemplateHtml(item.DefaultTaskTitle, item.Name, item.TodoTaskTemplateId, item.Category.BackgroundColor,  item.Category.ForegroundColor));
             });
         };
 

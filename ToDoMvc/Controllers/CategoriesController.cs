@@ -47,7 +47,7 @@ namespace ToDoMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CategoryId,Name,Color")] Category category)
+        public async Task<ActionResult> Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ToDoMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,Name,Color")] Category category)
+        public async Task<ActionResult> Edit(Category category)
         {
             if (ModelState.IsValid)
             {
