@@ -9,7 +9,7 @@
             content.children().remove();
 
             $.each(data, function (i, item) {
-                content.append(templates.getTaskHtml(item.TodoTaskID, item.Title, item.Category.BackgroundColor,  item.Category.ForegroundColor));
+                content.append(templates.getTaskHtml(item.TodoTaskID, item.Title, item.Category.BackgroundColor, item.Category.ForegroundColor));
             });
         };
 
@@ -34,7 +34,10 @@
         var date = ui.item.closest(".todo-column").data("date");
 
         if (ui.item.hasClass('sticky-template')) {
-            dataservice.createTask({ taskDate: date, title: ui.item.data('default-title'), templateId: ui.item.data('template-id') }, function () { loadDateColumn(date); });
+            $('#Dialog_TaskName').val(ui.item.data('default-title'));
+            $('#createTaskDialog').data('date', date);
+            $('#createTaskDialog').data('templateid', ui.item.data('template-id'));
+            $("#createTaskDialog").dialog("open");
         } else {
             dataservice.updateTask({ todoTaskId: ui.item.attr("id"), newTaskDate: date }, function () { loadDateColumn(date); });
         }
@@ -80,7 +83,7 @@
             templatesArea.children().remove();
 
             $.each(data, function (i, item) {
-                templatesArea.append(templates.getStickyTemplateHtml(item.DefaultTaskTitle, item.Name, item.TodoTaskTemplateId, item.Category.BackgroundColor,  item.Category.ForegroundColor));
+                templatesArea.append(templates.getStickyTemplateHtml(item.DefaultTaskTitle, item.Name, item.TodoTaskTemplateId, item.Category.BackgroundColor, item.Category.ForegroundColor));
             });
         };
 
@@ -98,7 +101,20 @@
     var initializeDialogs = function () {
         $("#createTaskDialog").dialog({
             autoOpen: false,
-            dialogClass: "no-close"
+            dialogClass: "no-close",
+            buttons: [
+                {
+                    text: "Create",
+                    click: function () {
+                        var date = $('#createTaskDialog').data('date');
+                        var templateid = $('#createTaskDialog').data('templateid');
+                        var title = $('#Dialog_TaskName').val();
+
+                        dataservice.createTask({ taskDate: date, title: title, templateId: templateid }, function () { loadDateColumn(date); });
+                        $(this).dialog("close");
+                    }
+                }
+            ]
         });
     };
 
@@ -112,7 +128,7 @@
         loadTemplates();
 
         initializeDialogs();
-        //$("#createTaskDialog").dialog("open");
+
 
         highlightCurrentDate();
 
