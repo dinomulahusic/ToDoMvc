@@ -2,8 +2,10 @@
     ViewBag.Title = "Home Page";
 }
 
-<a id="moveOneDateBefore" style="float: left" href="#">&lArr;</a>
-<a id="moveOneDateAfter" style="float: right" href="#">&rArr;</a>
+<div class="row">
+    <a id="moveOneDateBefore" style="float: left" href="#">&lArr;</a>
+    <a id="moveOneDateAfter" style="float: right" href="#">&rArr;</a>
+</div>
 <br />
 <div class="row todo-board">
 
@@ -18,14 +20,11 @@
     </div>
 </div>
 
-<div id="createTaskDialog" class="col-md-8" title="Create task" data-date="" data-templateid="">
+<div id="createTaskDialog" title="Create task" data-date="" data-templateid="">
     <div class="form-horizontal">
-        <h4>Create task</h4>
-        <hr>
-
         <div class="form-group">
-            <label class="control-label col-md-2" for="Dialog_TaskName">Name</label>
-            <div class="col-md-10">
+            <label class="control-label col-md-4" for="Dialog_TaskName">Name</label>
+            <div class="col-md-7">
                 <input class="form-control text-box single-line" id="Dialog_TaskName" type="text" value="">
             </div>
         </div>
